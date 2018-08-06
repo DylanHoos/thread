@@ -22,7 +22,7 @@ public class LockTest1 {
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                y.isSyncA();
+                x.isSyncB();
             }
         },"t2");
         
