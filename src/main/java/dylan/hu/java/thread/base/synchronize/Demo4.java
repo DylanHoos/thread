@@ -9,10 +9,32 @@ package src.main.java.dylan.hu.java.thread.base.synchronize;
  */
 public class Demo4 {
     
+    Somthing x = new Somthing();
+    Somthing y = new Somthing();
+    
+    private void test1() {
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                x.isSyncA();
+            }
+        },"t1");
+        
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                y.isSyncA();
+            }
+        },"t2");
+        
+        t1.start();
+        t2.start();
+    }
     
     
     public static void main(String[] args) {
-        
+        Demo4 demo4 = new Demo4();
+        demo4.test1();
     }
 }
 
