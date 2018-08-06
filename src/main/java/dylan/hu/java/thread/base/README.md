@@ -16,11 +16,49 @@
    * Runnable:定一个一个类MyRunnable实现Runnable接口,通过new Thread(new Runnable())等方式新建线程。
    * Thread:定义一个类MyThread继承Thread类,通过new MyThread()等方式新建线程
    * Runnable和Thread的差异
-     1. Thread 和 Runnable 的相同点：都是“多线程的实现方式”
-     2. Thread 和 Runnable 的不同点：
-        Thread是类,Runnable是接口;Thread类实现了Runnable接口,Runnable扩展性优于Thread,
-        Runnable还有可以用于“资源的共享”,即，多个线程都是基于一个Runnable对象建立的，共享Runnable对象上的资源
+        1. Thread 和 Runnable 的相同点：都是“多线程的实现方式”
+        2. Thread 和 Runnable 的不同点：
+            Thread是类,Runnable是接口;Thread类实现了Runnable接口,Runnable扩展性优于Thread,
+            Runnable还有可以用于“资源的共享”,即，多个线程都是基于一个Runnable对象建立的，共享Runnable对象上的资源
    * Thread和Runnable多线程示例：
-        - dylan.hu.java.thread.base.ThreadTest
-        - dylan.hu.java.thread.base.RunnableTest
+        - example: dylan.hu.java.thread.base.ThreadTest
+        - example: dylan.hu.java.thread.base.RunnableTest
+#####start()和run()区别
+        1. start()它的作用是启动一个新线程，新线程会执行相应的run()方法。start()不能被重复调用。
+        2. run()就和普通的成员方法一样，可以被重复调用。单独调用run()的话，会在当前线程中执行run()，而并不会启动新线程！
+        3. example:
+            - dylan.hu.java.thread.base.Demo
+        4.源码
+        > public synchronized void start() {
+                  /**
+                   * This method is not invoked for the main method thread or "system"
+                   * group threads created/set up by the VM. Any new functionality added
+                   * to this method in the future may have to also be added to the VM.
+                   *
+                   * A zero status value corresponds to state "NEW".
+                   */
+                  if (threadStatus != 0)
+                      throw new IllegalThreadStateException();
+          
+                  /* Notify the group that this thread is about to be started
+                   * so that it can be added to the group's list of threads
+                   * and the group's unstarted count can be decremented. */
+                  group.add(this);
+          
+                  boolean started = false;
+                  try {
+                      start0();
+                      started = true;
+                  } finally {
+                      try {
+                          if (!started) {
+                              group.threadStartFailed(this);
+                          }
+                      } catch (Throwable ignore) {
+                          /* do nothing. If start0 threw a Throwable then
+                            it will be passed up the call stack */
+                      }
+                  }
+              }
+        
      
