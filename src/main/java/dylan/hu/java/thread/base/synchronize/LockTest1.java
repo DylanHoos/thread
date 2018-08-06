@@ -2,13 +2,12 @@ package src.main.java.dylan.hu.java.thread.base.synchronize;
 
 /**
  * @program: thread
- * @ClassName: Demo4
+ * @ClassName: LockTest1
  * @description: TODO
  * @author: huxuef@zjhcsoft.com
- * @create: 2018/8/6 0006 下午 8:40
+ * @create: 2018/8/6 0006 下午 8:50
  */
-public class Demo4 {
-    
+public class LockTest1 {
     Somthing x = new Somthing();
     Somthing y = new Somthing();
     
@@ -33,8 +32,8 @@ public class Demo4 {
     
     
     public static void main(String[] args) {
-        Demo4 demo4 = new Demo4();
-        demo4.test1();
+        LockTest1 demo = new LockTest1();
+        demo.test1();
     }
 }
 
@@ -83,3 +82,4 @@ class Somthing {
         }
     }
 }
+
