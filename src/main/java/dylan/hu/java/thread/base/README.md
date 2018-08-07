@@ -1,6 +1,6 @@
 #线程状态图
 -
-![Image text](/E:/ideaspace/thread/src/main/resources/image/thread_status.png)
+![Image text](https://github.com/DylanHoos/thread/blob/master/src/main/resources/image/thread_status.png)
 
 ####说明
    ######线程共包括以下5种状态
