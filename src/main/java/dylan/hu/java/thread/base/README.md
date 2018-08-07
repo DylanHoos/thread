@@ -1,5 +1,4 @@
 #线程状态图
--
 ![Image text](https://github.com/DylanHoos/thread/blob/master/src/main/resources/image/thread_status.png)
 
 ####说明
